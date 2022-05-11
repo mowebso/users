@@ -19,7 +19,7 @@ class UsersServiceProvider extends PackageServiceProvider
             ->name('users')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_users_table')
+            ->hasMigration('modify_users_table')
             ->hasCommand(UsersCommand::class);
     }
 }
