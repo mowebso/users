@@ -3,18 +3,18 @@
 namespace MoWebSo\Users\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use MoWebSo\Tenants\Models\Tenant;
 use MoWebSo\Users\Data\UserData;
-use phpDocumentor\Reflection\Types\This;
 use Spatie\LaravelData\WithData;
 
 /**
  * @mixin IdeHelperUser
  */
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
     use WithData;
@@ -61,5 +61,11 @@ class User extends Model
         if (config('users.enable_tenants', true)) {
             $this->mergeFillable(['current_tenant_id']);
         }
+    }
+
+    public function tenants()
+    {
+        return $this->belongsToMany(Tenant::class)
+                    ->withPivot('is_owner');
     }
 }
