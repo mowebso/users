@@ -9,7 +9,8 @@ class UserData extends Data
 {
     public function __construct(
         public string $id,
-        public ?string $name,
+        public ?string $first_name,
+        public ?string $last_name,
         public ?string $email,
         public Carbon|null $created_at,
         public Carbon|null $updated_at

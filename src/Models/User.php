@@ -2,7 +2,9 @@
 
 namespace MoWebSo\Users\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -30,7 +32,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -63,9 +66,16 @@ class User extends Authenticatable
         }
     }
 
-    public function tenants()
+    public function tenants() : BelongsToMany
     {
         return $this->belongsToMany(Tenant::class)
                     ->withPivot('is_owner');
+    }
+
+    public function fullName() : Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->first_name.' '.$this->last_name,
+        )->shouldCache();
     }
 }
