@@ -61,7 +61,7 @@ class User extends Authenticatable
     {
         parent::__construct($attributes);
 
-        if (config('users.enable_tenants', true)) {
+        if (config('tenants.enable_tenants', false)) {
             $this->mergeFillable(['current_tenant_id']);
         }
     }

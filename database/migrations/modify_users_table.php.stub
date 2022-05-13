@@ -9,12 +9,14 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table)
         {
-            if (config('users.enable_tenants', true)) {
+            if (config('tenants.enable_tenants', false)) {
                 $table->after('id', function () use ($table)
                 {
                     $table->foreignId('current_tenant_id')
                           ->references('id')
-                          ->on('tenants');
+                          ->on('tenants')
+                          ->onUpdate('cascade')
+                          ->onDelete('cascade');
                     $table->string('first_name');
                     $table->string('last_name');
                 });
