@@ -10,6 +10,6 @@ class CreateUser
     public function __invoke(
         UserData $userData
     ): User {
-        return User::create($userData->toArray());
+        return User::create($userData->include('password')->toArray());
     }
 }

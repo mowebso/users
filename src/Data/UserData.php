@@ -6,6 +6,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Spatie\LaravelData\Data;
 use Illuminate\Validation\Rules;
+use Spatie\LaravelData\Lazy;
 
 class UserData extends Data
 {
@@ -15,7 +16,7 @@ class UserData extends Data
         public string $first_name,
         public string $last_name,
         public string $email,
-        public string $password,
+        public Lazy|string $password,
         public Carbon|null $created_at,
         public Carbon|null $updated_at
     ) {
@@ -39,7 +40,7 @@ class UserData extends Data
             first_name: $data['first_name'],
             last_name: $data['last_name'],
             email: $data['email'],
-            password: Hash::make($data['password']),
+            password: Lazy::create(fn() => Hash::make($data['password'])),
             created_at: $data['created_at'] ?? null,
             updated_at: $data['updated_at'] ?? null,
         );
