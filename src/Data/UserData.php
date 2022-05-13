@@ -32,7 +32,7 @@ class UserData extends Data
         ];
     }
 
-    public static function fromArray(array $data)
+    public static function fromArray(array $data) : UserData
     {
         return new self(
             id: $data['id'] ?? null,
