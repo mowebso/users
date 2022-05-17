@@ -15,8 +15,5 @@ Route::macro('Users', function (string $baseUrl = 'users')
              //      ->name('tenant.change');
 
 
-             Route::get('', [UserController::class, 'index'])
-                  ->can('viewAny', User::class)
-                  ->name('user.index');
          });
 });

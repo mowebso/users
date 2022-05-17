@@ -20,7 +20,6 @@ class UserPolicy
 
     public function viewAny(User $user) : bool
     {
-        return $user->tenants()
-             ->wherePivot('is_owner', true)->exists();
+        return true;
     }
 }
