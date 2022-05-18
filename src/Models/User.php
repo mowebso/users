@@ -72,7 +72,7 @@ class User extends Authenticatable
                     ->withPivot('is_owner');
     }
 
-    public function fullName() : Attribute
+    public function name() : Attribute
     {
         return Attribute::make(
             get: fn ($value) => $this->first_name.' '.$this->last_name,
