@@ -14,9 +14,7 @@ return new class extends Migration {
                 {
                     $table->foreignId('current_tenant_id')
                           ->references('id')
-                          ->on('tenants')
-                          ->onUpdate('cascade')
-                          ->onDelete('cascade');
+                          ->on('tenants');
                     $table->string('first_name');
                     $table->string('last_name');
                 });
