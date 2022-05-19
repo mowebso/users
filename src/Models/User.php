@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
 use MoWebSo\Tenants\Models\Tenant;
 use MoWebSo\Users\Data\UserData;
 use Spatie\LaravelData\WithData;
